@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="description" content="Cloud Lounge Cafe — digital menu, location, reviews and QR menu scanner.">
+  <title>Cloud Lounge Cafe | Chandannagar</title>
+  <style>
+    :root{--bg:#080808;--panel:#11100f;--gold:#d6a64a;--gold2:#f0cc78;--cream:#f5ead4;--muted:#b9ad9b;--line:#2c271f}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at top,#241a0e 0,#0b0a08 28%,#070707 70%);color:var(--cream);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}
+    a{color:inherit}.container{width:min(1120px,92%);margin:auto}.nav{position:sticky;top:0;z-index:20;background:rgba(7,7,7,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.navin{display:flex;justify-content:space-between;align-items:center;padding:14px 0}.brand{font-family:Georgia,serif;font-weight:700;letter-spacing:.08em;color:var(--gold2);text-transform:uppercase}.navlinks{display:flex;gap:20px;align-items:center}.navlinks a{text-decoration:none;color:#ddd;font-size:.92rem}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--gold);background:var(--gold);color:#15110a;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:800;cursor:pointer}.btn.alt{background:transparent;color:var(--gold2)}
+    .hero{min-height:76vh;display:grid;place-items:center;text-align:center;padding:70px 0;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.78)),url('assets/menu-01-combo.png') center/cover}.hero-inner{max-width:850px}.eyebrow{color:var(--gold2);letter-spacing:.22em;text-transform:uppercase;font-size:.78rem}.hero h1{font:700 clamp(3rem,8vw,6.5rem)/.95 Georgia,serif;margin:15px 0;color:#fff}.hero h1 span{color:var(--gold2)}.hero p{font-size:1.1rem;color:#eee;max-width:680px;margin:0 auto 28px}.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.section{padding:78px 0}.section h2{font:700 clamp(2rem,4vw,3rem) Georgia,serif;margin:0 0 12px}.section-intro{color:var(--muted);max-width:720px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.info-card,.review,.feature{background:linear-gradient(145deg,#15130f,#0d0c0b);border:1px solid var(--line);border-radius:18px;padding:22px}.feature strong{display:block;color:var(--gold2);margin-bottom:6px}.info-card h3{margin-top:0;color:var(--gold2)}
+    .menu-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.filter{border:1px solid var(--line);background:#12100d;color:#eee;padding:10px 15px;border-radius:999px;cursor:pointer}.filter.active{border-color:var(--gold);color:var(--gold2)}.menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.menu-card{overflow:hidden;background:#0e0d0c;border:1px solid var(--line);border-radius:16px}.menu-card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}.menu-card div{padding:12px 14px}.menu-card h3{font-size:1rem;margin:0 0 3px}.menu-card p{font-size:.82rem;color:var(--muted);margin:0}
+    .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stars{color:var(--gold2);letter-spacing:2px}.review p{color:#ddd}.review small{color:var(--muted)}
+    .scanner{background:linear-gradient(120deg,#171109,#0e0d0b);border:1px solid #4a3820;border-radius:22px;padding:30px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}.scanner h2{margin-top:0}.scanner-box{background:#050505;border:1px dashed #80602e;border-radius:16px;min-height:260px;display:grid;place-items:center;overflow:hidden}.scanner-box video{width:100%;height:100%;object-fit:cover}.scan-status{color:var(--muted);font-size:.9rem;margin-top:10px}.hidden{display:none!important}
+
+    .scanner-modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.86);display:grid;place-items:center;padding:20px}.scanner-modal-card{position:relative;width:min(520px,100%);background:#11100f;border:1px solid #6b5025;border-radius:22px;padding:28px;box-shadow:0 20px 80px rgba(0,0,0,.7);text-align:center}.scanner-close{position:absolute;right:14px;top:10px;background:transparent;border:0;color:#fff;font-size:34px;line-height:1;cursor:pointer}.scanner-modal-video{width:100%;aspect-ratio:1/1;background:#050505;border:1px dashed #80602e;border-radius:16px;overflow:hidden;display:grid;place-items:center;color:#a99d8b;margin:18px 0}.scanner-modal-video video{width:100%!important;height:100%!important;object-fit:cover}.scanner-modal-card h2{margin:6px 0 0;font:700 2rem Georgia,serif}.scanner-modal .btn{margin-top:8px}
+    footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted)}.footerin{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.pill{display:inline-block;border:1px solid var(--line);padding:5px 10px;border-radius:999px;margin:3px 4px 3px 0}
+    @media(max-width:850px){.grid,.reviews{grid-template-columns:1fr 1fr}.menu-grid{grid-template-columns:repeat(2,1fr)}.scanner{grid-template-columns:1fr}.navlinks a{display:none}}
+    @media(max-width:520px){.grid,.reviews{grid-template-columns:1fr}.menu-grid{grid-template-columns:1fr 1fr}.hero{min-height:70vh}.section{padding:55px 0}.brand{font-size:.9rem}}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="container navin"><div class="brand">Cloud Lounge Cafe</div><nav class="navlinks"><a href="#about">About</a><a href="#menu">Menu</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a><button class="btn" onclick="openScanner()">Scan Menu</button></nav></div></header>
+
+  <main>
+    <section class="hero"><div class="hero-inner"><div class="eyebrow">ক্লাউড লাউঞ্জ ক্যাফে · Chandannagar</div><h1>Cloud <span>Lounge</span> Cafe</h1><p>A warm café experience for food, coffee, shakes, desserts and lounge-style evenings in Chandannagar.</p><div class="actions"><a class="btn" href="#menu">Explore Menu</a><button class="btn alt" onclick="openScanner()">📷 Scan Menu QR</button><a class="btn alt" href="tel:09051532006">Call 090515 32006</a></div></div></section>
+
+    <section class="section" id="about"><div class="container"><h2>At a glance</h2><p class="section-intro">Information supplied from the café listing and menu photos.</p><div class="grid" style="margin-top:26px"><div class="info-card"><h3>📍 Location</h3><p>MGM Sarani Road, Talpukur Dhar, Bagbazar, Chandannagar, Chinsurah, West Bengal 712136</p><a href="https://www.google.com/maps/search/?api=1&query=Cloud+Lounge+Cafe+MGM+Sarani+Road+Chandannagar" target="_blank">Open in Google Maps →</a></div><div class="info-card"><h3>🕙 Hours</h3><p><strong>Open</strong> · listed closing time 10 PM</p><p class="section-intro">Hours can change; verify before visiting.</p></div><div class="info-card"><h3>💰 Price</h3><p><strong>₹200–400</strong> listed per person</p><p class="section-intro">Some individual reviews report a higher spend, so treat the range as indicative.</p></div></div></div></section>
+
+    <section class="section" id="menu"><div class="container"><h2>Digital menu</h2><p class="section-intro">Browse the menu photos. Tap any card to open the full-size menu image.</p><div class="menu-toolbar"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="food">Food</button><button class="filter" data-filter="drinks">Drinks</button><button class="filter" data-filter="dessert">Desserts</button><button class="filter" data-filter="offers">Offers</button></div><div class="menu-grid" id="menuGrid"></div></div></section>
+
+    <section class="section"><div class="container"><div class="scanner" id="scannerSection"><div><div class="eyebrow">Quick access</div><h2>Scan a menu QR</h2><p>Use your phone or laptop camera to scan a QR code. If it contains a web address, the menu will open automatically.</p><button class="btn" onclick="startScanner()">Start Camera Scanner</button> <button class="btn alt" onclick="stopScanner()">Stop</button><div id="scanStatus" class="scan-status">Camera permission is required.</div></div><div class="scanner-box" id="reader"><span>📷 Camera preview appears here</span></div></div></div></section>
+
+    <section class="section" id="reviews"><div class="container"><h2>Guest feedback</h2><p class="section-intro">The listing shows a 4.6/5 rating from 27 reviews.</p><div class="reviews" style="margin-top:25px"><article class="review"><div class="stars">★★★★★</div><p>“Nice food, atmosphere and service.”</p><small>Sandip Basu · Local Guide</small></article><article class="review"><div class="stars">★★★★★</div><p>“The food was very tasty and fresh. The café ambience was comfortable and pleasant…”</p><small>Sahina Khatun · recent review</small></article><article class="review"><div class="stars">★★★★★</div><p>“Best cafe with better atmosphere with behaviour.”</p><small>Adi “Rik” · recent review</small></article></div></div></section>
+
+    <section class="section" id="visit"><div class="container"><h2>Visit Cloud Lounge</h2><div class="grid" style="margin-top:24px"><div class="feature"><strong>📞 Phone</strong><a href="tel:09051532006">090515 32006</a></div><div class="feature"><strong>📍 Address</strong>MGM Sarani Road, Talpukur Dhar, Bagbagar, Chandannagar, Chinsurah, WB 712136</div><div class="feature"><strong>⭐ Listing</strong>4.6 · 27 reviews · Cafe · ₹200–400</div></div><div style="margin-top:24px"><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Cloud+Lounge+Cafe+MGM+Sarani+Road+Chandannagar">Get Directions</a> <button class="btn alt" onclick="openScanner()">Scan Menu</button></div></div></section>
+  </main>
+
+  <div id="scannerModal" class="scanner-modal hidden" aria-hidden="true">
+    <div class="scanner-modal-card">
+      <button class="scanner-close" onclick="closeScanner()" aria-label="Close">×</button>
+      <div class="eyebrow">MENU SCANNER</div>
+      <h2>Scan QR Code</h2>
+      <div class="scanner-modal-video" id="modalReader"><span>Camera preview will appear here</span></div>
+      <p id="modalStatus" class="scan-status">Starting camera…</p>
+      <button class="btn alt" onclick="closeScanner()">Close Scanner</button>
+    </div>
+  </div>
+
+  <footer><div class="container footerin"><div>© <span id="year"></span> Cloud Lounge Cafe</div><div><span class="pill">Cafe</span><span class="pill">LGBTQ+ friendly</span><span class="pill">Digital Menu</span></div></div></footer>
+
+  
+  <script>
+    const menuItems=[
+      {cat:'offers',title:'Double Base Combo',desc:'Combo offer from the supplied menu artwork.',img:'assets/menu-01-combo.png'},
+      {cat:'dessert',title:'Desserts',desc:'Dessert menu page.',img:'assets/menu-02-desserts.png'},
+      {cat:'food',title:'Veg & Non-Veg Starters',desc:'Starters and snacks.',img:'assets/menu-03-starters.png'},
+      {cat:'food',title:'Pizza & Wraps',desc:'Pizza and wrap selection.',img:'assets/menu-04-pizza-wraps.png'},
+      {cat:'food',title:'Pasta & Soups',desc:'Pasta and soup selection.',img:'assets/menu-05-pasta-soups.png'},
+      {cat:'drinks',title:'Tea, Shakes & Coffee',desc:'Beverages and refreshments.',img:'assets/menu-06-beverages.png'},
+      {cat:'food',title:'Burgers & Sandwiches',desc:'Burger and snack page.',img:'assets/menu-07-burgers.png'},
+      {cat:'food',title:'Continental, Noodles & Baked',desc:'Continental dishes, noodles and baked items.',img:'assets/menu-08-noodles.png'}
+    ];
+    const grid=document.getElementById('menuGrid');
+    function render(filter='all'){grid.innerHTML=menuItems.filter(x=>filter==='all'||x.cat===filter).map(x=>`<article class="menu-card"><a href="${x.img}" target="_blank"><img loading="lazy" src="${x.img}" alt="${x.title} menu page"></a><div><h3>${x.title}</h3><p>${x.desc}</p></div></article>`).join('')}
+    render();
+    document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.filter)}));
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    let scanner=null;
+    let scannerStarting=false;
+    function openScanner(){
+      const modal=document.getElementById('scannerModal');
+      modal.classList.remove('hidden'); modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+      startScanner();
+    }
+    async function loadScannerLibrary(){
+      if(window.Html5Qrcode) return true;
+      return await new Promise(resolve=>{
+        const script=document.createElement('script');
+        script.src='https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js';
+        script.onload=()=>resolve(true); script.onerror=()=>resolve(false);
+        document.head.appendChild(script);
+      });
+    }
+    async function startScanner(){
+      const status=document.getElementById('modalStatus');
+      if(scanner || scannerStarting){return}
+      scannerStarting=true; status.textContent='Loading scanner…';
+      const loaded=await loadScannerLibrary();
+      if(!loaded || !window.Html5Qrcode){
+        scannerStarting=false; status.innerHTML='Scanner could not load. Connect to the internet and try again.'; return;
+      }
+      scanner=new Html5Qrcode('modalReader');
+      status.textContent='Allow camera access, then point it at the QR code.';
+      try{
+        await scanner.start({facingMode:{exact:'environment'}},{fps:10,qrbox:{width:230,height:230}},onScanSuccess,()=>{});
+        scannerStarting=false;
+      }catch(firstError){
+        try{
+          await scanner.start({facingMode:'environment'},{fps:10,qrbox:{width:230,height:230}},onScanSuccess,()=>{});
+          scannerStarting=false;
+        }catch(e){
+          try{scanner.clear()}catch(_){} scanner=null; scannerStarting=false;
+          status.innerHTML='Camera could not start. Open this website on <b>HTTPS or localhost</b> and allow camera permission.';
+        }
+      }
+    }
+    function onScanSuccess(decoded){
+      const status=document.getElementById('modalStatus');
+      status.textContent='QR detected.';
+      stopScanner();
+      if(/^https?:\/\//i.test(decoded)){window.location.href=decoded}else{status.textContent='QR content: '+decoded;}
+    }
+    async function stopScanner(){
+      if(scanner){try{await scanner.stop()}catch(e){} try{scanner.clear()}catch(e){} scanner=null}
+    }
+    async function closeScanner(){
+      await stopScanner();
+      document.getElementById('scannerModal').classList.add('hidden');
+      document.getElementById('scannerModal').setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+      document.getElementById('modalReader').innerHTML='<span>Camera preview will appear here</span>';
+      document.getElementById('modalStatus').textContent='Starting camera…';
+    }
+    window.addEventListener('beforeunload',()=>{try{stopScanner()}catch(e){}});
+  </script>
+</body>
+</html>
